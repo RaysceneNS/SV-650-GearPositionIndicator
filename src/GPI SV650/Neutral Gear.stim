@@ -1,0 +1,6 @@
+#10
+$repeat 10
+	PINB = *PINA
+	#10
+	$break
+$endrep
