@@ -9,14 +9,11 @@
 #include <avr/interrupt.h>
 #include <avr/power.h>
 
-
-#define BATT_ADC_CH 0   // use VCC for AREF, use ADC0 for input (PA0), MUX bit 0:0:0:0:0
 #define GEAR_ADC_CH 1	// use VCC for AREF, use ADC1 for input (PA1), MUX bit 0:0:0:0:0
 
-// defines the number of times to take a sampling of voltages from the GPS switch higher numbers increase accurancy at the expense of speed
+// defines the number of times to take a sampling of voltages from the GPS switch higher numbers increase accuracy at the expense of speed
 // both values must be powers of two
 #define SAMPLE_SETS 16 //avg this many samples together
-
 
 #define DISP_A_PORT		PORTB
 #define DISP_A_PIN		_BV(PB2)
@@ -32,8 +29,6 @@
 #define DISP_F_PIN		_BV(PA6)
 #define DISP_G_PORT		PORTA
 #define DISP_G_PIN		_BV(PA7)
-#define DISP_ALERT_PORT		PORTB
-#define DISP_ALERT_PIN		_BV(PB1)
 
 #define DELAY_MS 25
 #define GEAR_DEBOUNCE_MS 150UL
@@ -63,7 +58,7 @@ we can definitely tell this from background noise. We ensure that we always latc
 //1.36v =69.4
 // Note: SV650 gear shows 0V on 1st gear, when bike engine is off, but switch is on. Only when engaged to N for first time, then the 1st gear reading becomes normal
 #define	FIRST_LO_V 54U 
-#define	FIRST_HI_V 79U //ok to butt this against second ?? we have neutral between...
+#define	FIRST_HI_V 79U //is it OK to butt this against second ?? we have neutral between...
 
 //1.77v = 90.2
 #define	SECOND_LO_V 80U 
