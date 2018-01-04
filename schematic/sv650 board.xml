@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>C:\Users\Racine\Documents\SV-650-GearPositionIndicator\schematic\sv650 board.sch</source>
+    <date>12/30/2017 8:27:38 PM</date>
+    <tool>Eeschema 4.0.7</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>sv650 board.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>LM2936-3.3</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-223-3_TabPin2</footprint>
+      <libsource lib="regul" part="LM2936-5.0"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59C97844</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>0.1u</value>
+      <footprint>Capacitors_SMD:C_0805</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59C98302</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>10uF</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59C983F3</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>10K</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59C9A0A8</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59C9A803</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>ATTINY44A-SSU</value>
+      <footprint>Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm</footprint>
+      <libsource lib="atmel" part="ATTINY44A-SSU"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A4838F2</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>47K</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A483A29</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>10K</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A483A62</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>MCP9700AT-E/TT</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <libsource lib="sensors" part="MCP9700AT-E/TT"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A483AD4</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>Nokia_5110_LCD</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x09_Pitch2.54mm</footprint>
+      <libsource lib="nokia_5110-3310_lcd" part="Nokia_5110_LCD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A483FFE</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="atmel" part="ATTINY24A-SSU">
+      <aliases>
+        <alias>ATTINY44A-SSU</alias>
+        <alias>ATTINY84A-SSU</alias>
+      </aliases>
+      <description>SO14, 2k Flash, 128B SRAM, 128B EEPROM, dW</description>
+      <docs>http://www.atmel.com/Images/doc8183.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ATTINY24A-SSU</field>
+        <field name="Footprint">Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VCC" type="power_in"/>
+        <pin num="2" name="(PCINT8/CLKI/XTAL1)PB0" type="BiDi"/>
+        <pin num="3" name="(PCINT9/XTAL2)PB1" type="BiDi"/>
+        <pin num="4" name="(PCINT11/dW/~RESET~)PB3" type="BiDi"/>
+        <pin num="5" name="(PCINT10/CKOUT/OC0A/INT0)PB2" type="BiDi"/>
+        <pin num="6" name="(PCINT7/ICP/OC0B/ADC7)PA7" type="BiDi"/>
+        <pin num="7" name="(PCINT6/SDA/DI/MOSI/OC1A/ADC6)PA6" type="BiDi"/>
+        <pin num="8" name="(PCINT5/DO/MISO/OC1B/ADC5)PA5" type="BiDi"/>
+        <pin num="9" name="(PCINT4/USCK/SCL/T1/ADC4)PA4" type="BiDi"/>
+        <pin num="10" name="(PCINT3/T0/ADC3)PA3" type="BiDi"/>
+        <pin num="11" name="(PCINT2/AIN1/ADC2)PA2" type="BiDi"/>
+        <pin num="12" name="(PCINT1/AIN0/ADC1)PA1" type="BiDi"/>
+        <pin num="13" name="(PCINT0/AREF/ADC0)PA0" type="BiDi"/>
+        <pin num="14" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="regul" part="LM2936-3.0">
+      <aliases>
+        <alias>LM2936-3.3</alias>
+        <alias>LM2936-5.0</alias>
+      </aliases>
+      <description>50mA Ultra-Low Quiescent Current LDO Voltage Regulator, 3.0V fixed output, TO-252/SOT-223</description>
+      <docs>http://www.ti.com/lit/ds/symlink/lm2936.pdf</docs>
+      <footprints>
+        <fp>TO?252*</fp>
+        <fp>SOT?223*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LM2936-3.0</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VI" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="VO" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="sensors" part="MCP9700T-H/TT">
+      <aliases>
+        <alias>MCP9700T-E/TT</alias>
+        <alias>MCP9700AT-H/TT</alias>
+        <alias>MCP9700AT-E/TT</alias>
+      </aliases>
+      <description>Low power, analog thermistor temperature sensor, ±4C accuracy, -40C to +150C, in SOT-23-3 package</description>
+      <docs>http://ww1.microchip.com/downloads/en/DeviceDoc/21942e.pdf</docs>
+      <footprints>
+        <fp>SOT-23-3*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MCP9700T-H/TT</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:SOT-23</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Vdd" type="power_in"/>
+        <pin num="2" name="Vout" type="output"/>
+        <pin num="3" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="nokia_5110-3310_lcd" part="Nokia_5110_LCD">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">Nokia_5110_LCD</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~RST" type="passive"/>
+        <pin num="2" name="VOUT" type="passive"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="OSC" type="passive"/>
+        <pin num="5" name="~SCE" type="passive"/>
+        <pin num="6" name="D/~C" type="passive"/>
+        <pin num="7" name="SDIN" type="passive"/>
+        <pin num="8" name="SCLK" type="passive"/>
+        <pin num="9" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="regul">
+      <uri>C:\Program Files\KiCad\share\kicad\library\regul.lib</uri>
+    </library>
+    <library logical="atmel">
+      <uri>C:\Program Files\KiCad\share\kicad\library\atmel.lib</uri>
+    </library>
+    <library logical="device">
+      <uri>C:\Program Files\KiCad\share\kicad\library\device.lib</uri>
+    </library>
+    <library logical="nokia_5110-3310_lcd">
+      <uri>C:\Program Files\KiCad\share\kicad\kicad-libs-master\components\Nokia_5110-3310_LCD\nokia_5110-3310_lcd.lib</uri>
+    </library>
+    <library logical="sensors">
+      <uri>C:\Program Files\KiCad\share\kicad\library\sensors.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(U2-Pad7)">
+      <node ref="U2" pin="7"/>
+      <node ref="U3" pin="1"/>
+    </net>
+    <net code="2" name="Net-(U2-Pad3)">
+      <node ref="U2" pin="3"/>
+      <node ref="U3" pin="7"/>
+    </net>
+    <net code="3" name="Net-(U2-Pad5)">
+      <node ref="U3" pin="8"/>
+      <node ref="U2" pin="5"/>
+    </net>
+    <net code="4" name="GND">
+      <node ref="U1" pin="2"/>
+      <node ref="U2" pin="14"/>
+      <node ref="C1" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C3" pin="1"/>
+      <node ref="U3" pin="3"/>
+      <node ref="R4" pin="1"/>
+      <node ref="U4" pin="3"/>
+    </net>
+    <net code="5" name="Net-(U3-Pad2)">
+      <node ref="U3" pin="2"/>
+    </net>
+    <net code="6" name="Net-(U3-Pad4)">
+      <node ref="U3" pin="4"/>
+    </net>
+    <net code="7" name="Net-(U2-Pad10)">
+      <node ref="U2" pin="10"/>
+    </net>
+    <net code="8" name="Net-(U2-Pad9)">
+      <node ref="U2" pin="9"/>
+    </net>
+    <net code="9" name="Net-(U2-Pad8)">
+      <node ref="U2" pin="8"/>
+    </net>
+    <net code="10" name="Net-(U2-Pad4)">
+      <node ref="U2" pin="4"/>
+    </net>
+    <net code="11" name="+3V3">
+      <node ref="U4" pin="1"/>
+      <node ref="U1" pin="3"/>
+      <node ref="U2" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="U3" pin="9"/>
+    </net>
+    <net code="12" name="+5V">
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="13" name="Net-(U2-Pad6)">
+      <node ref="U2" pin="6"/>
+      <node ref="U3" pin="5"/>
+    </net>
+    <net code="14" name="Net-(U2-Pad2)">
+      <node ref="U2" pin="2"/>
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="15" name="+12V">
+      <node ref="C1" pin="1"/>
+      <node ref="U1" pin="1"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="16" name="Net-(U2-Pad12)">
+      <node ref="U4" pin="2"/>
+      <node ref="U2" pin="12"/>
+    </net>
+    <net code="17" name="Net-(R3-Pad1)">
+      <node ref="R4" pin="2"/>
+      <node ref="U2" pin="13"/>
+      <node ref="R3" pin="1"/>
+    </net>
+    <net code="18" name="Net-(C3-Pad2)">
+      <node ref="R2" pin="1"/>
+      <node ref="C3" pin="2"/>
+      <node ref="U2" pin="11"/>
+    </net>
+  </nets>
+</export>
