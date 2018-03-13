@@ -26,7 +26,7 @@ uint8_t AverageGearValue()
 	{
 		return 0;
 	}
-	return _gearPosSum / _gearPosCnt;
+	return _gearPosSum / SAMPLE_SETS;
 }
 
 uint8_t AverageBattVoltage()
@@ -35,7 +35,7 @@ uint8_t AverageBattVoltage()
 	{
 		return 0;
 	}
-	return _battPosSum / _battPosCnt;
+	return _battPosSum / SAMPLE_SETS;
 }
 
 uint8_t AverageTempValue()
@@ -44,13 +44,14 @@ uint8_t AverageTempValue()
 	{
 		return 0;
 	}
-	return _tempPosSum / _tempPosCnt;
+	return _tempPosSum / SAMPLE_SETS;
 }
 
-
-
-//interrupt service routine for ADC
-// here we read the value as 8 bit precision and then copy that value to a memory location
+/*
+ interrupt service routine for ADC
+ here we read the value as 8 bit precision and then copy that value to a memory location
+*/
+volatile uint8_t isr_idx = 0;
 ISR(ADC_vect)
 {
 	//only want the high val ... don't need 10bit precision here
@@ -60,6 +61,14 @@ ISR(ADC_vect)
 	Set the ADC Start Conversion bit on the ADC Control and Status Register A
 	*/
 	ADCSRA |= (1<<ADSC);
+	
+	isr_idx++;
+	
+	if(isr_idx <= 2)
+	{
+		//throw away the first reading(s) after each admux switch as the ADC hasn't stabilized at this time
+		return;
+	}
 	
 	if(ADMUX == GEAR_ADC_CH)
 	{
@@ -93,6 +102,7 @@ ISR(ADC_vect)
 				_gearPosCnt++;
 			}
 		}
+		
 	}
 	else if(ADMUX == BATT_ADC_CH)
 	{
@@ -116,45 +126,26 @@ ISR(ADC_vect)
 			_tempPosCnt++;
 		}		
 	}
-}
-
-
-/*
-Takes a character argument as input, and sets the display mask to draw that
-character on the seven segment display, the actual drawing is handled by the ISR on overflow Timer0
-*/
-void SetDisplay(uint8_t gear)
-{
-	switch(gear)
+		
+	//move the admux to the next channel
+	if(isr_idx > 10)
 	{
-		case INDETERMINATE:
-		//clear area?
-		break;
-		case NEUTRAL:
-		LcdBitmap(0, 0, BMP_NEUTRAL);
-		break;
-		case FIRST:
-		LcdBitmap(0, 0, BMP_FIRST);
-		break;
-		case SECOND:
-		LcdBitmap(0, 0, BMP_SECOND);
-		break;
-		case THIRD:
-		LcdBitmap(0, 0, BMP_THIRD);
-		break;
-		case FOURTH:
-		LcdBitmap(0, 0, BMP_FOURTH);
-		break;
-		case FIFTH:
-		LcdBitmap(0, 0, BMP_FIFTH);
-		break;
-		case SIXTH:
-		LcdBitmap(0, 0, BMP_SIXTH);
-		break;
+		if(ADMUX == GEAR_ADC_CH)
+		{
+			ADMUX = BATT_ADC_CH;
+		}
+		else if(ADMUX == BATT_ADC_CH)
+		{
+			ADMUX = TEMP_ADC_CH;			
+		}
+		else if(ADMUX == TEMP_ADC_CH)
+		{
+			ADMUX = GEAR_ADC_CH;			
+		}
+		
+		isr_idx = 0;
 	}
 }
-
-
 
 /*
 This function initializes the ADC
@@ -175,7 +166,7 @@ void initADC()
 		(0 << ADIF)  |     // clear ADC interrupt flag
 		(1 << ADIE)  |     // Enable ADC interrupt
 		(1 << ADPS2) | (1 << ADPS1) | (0 << ADPS0);    // set prescaler to /64 1:1:0
-			
+	
 	ADCSRB = (1 << ADLAR);     // left shift result, only interested in 8 bit precision
 }
 
@@ -189,75 +180,152 @@ void init()
 
 	LcdInitialise();
 
-	//turn off unused parts
+	//turn off unused parts to conserve power
 	power_usi_disable();
 	power_timer1_disable();
+}
+
+void LcdDrawVoltage()
+{
+	// the voltage divider is built using a 10k & 47k divider network = 5.7x divider on input V
+	// thus 2.5v on ADC is 5.7x2.5 = 14.25v input = 194 ADC 
+	// note: maximum reading on the divider is 18.81 v
+	// the factor is determined as VCC / 256 ADC steps * 5.7
+	//   3.3v / 256 * vdiv(5.7)=0.0734765625 v per ADC step
+	uint8_t volts = AverageBattVoltage() * (0.0734765625*10);
+	
+	//print the 1 in the tens places
+	for(uint8_t i = 2; i >= 0; i--)
+	{
+		LcdMediumDigit(4, 42 + (i*12), (volts % 10));
+		volts = (volts-(volts % 10))/10;
+	}
+	
+	//print the decimal point in the voltage
+	LcdGliff(5, 64, decimal);
+	
+	//print the v to denote volts
+	LcdGliff(5, 78, volt_symbol);
+}
+
+/*
+Prints the current gear on the LCD
+*/
+void LcdDrawGear()
+{
+	// Only accept a gear as changed if it maintains a stability for a defined interval of time
+	uint8_t tempGear1 = DetermineGearPos(AverageGearValue());
+	if (tempGear1 != _currentGear)
+	{
+		// make sure that we're serious about this new state,
+		_delay_ms(GEAR_DEBOUNCE_MS);
+		uint8_t tempGear2 = DetermineGearPos(AverageGearValue());
+		if(tempGear2 == tempGear1)
+		{
+			//now make the change
+			_currentGear = tempGear2;
+			switch(_currentGear)
+			{
+				case INDETERMINATE:
+				LcdBitmap(0, 0, BMP_CLEAR);
+				break;
+				case NEUTRAL:
+				LcdBitmap(0, 0, BMP_NEUTRAL);
+				break;
+				case FIRST:
+				LcdBitmap(0, 0, BMP_FIRST);
+				break;
+				case SECOND:
+				LcdBitmap(0, 0, BMP_SECOND);
+				break;
+				case THIRD:
+				LcdBitmap(0, 0, BMP_THIRD);
+				break;
+				case FOURTH:
+				LcdBitmap(0, 0, BMP_FOURTH);
+				break;
+				case FIFTH:
+				LcdBitmap(0, 0, BMP_FIFTH);
+				break;
+				case SIXTH:
+				LcdBitmap(0, 0, BMP_SIXTH);
+				break;
+			}
+		}
+	}
+}
+
+void LcdDrawTemp()
+{
+	// the factor is 1.2890625=3.3/256*100  vcc/adcsteps*degreesC
+	// the 0.5volt offset is baked into the MCP9700 to allow the part to read below zero degrees Celsius
+	// this call converts the ADC reading into a degrees value
+	int8_t degreesC = ((AverageTempValue() * 1.2890625) - 50);
+	
+	if(degreesC < 0)
+	{
+		//print negation symbols
+		LcdGliff(0, 48, hyphen);
+	}
+	
+	//print the 1 in the tens places
+	for(uint8_t i = 1; i >= 0; i--)
+	{
+		LcdMediumDigit(4, 52 + (i*12), (degreesC % 10));
+		degreesC=(degreesC-(degreesC % 10))/10;
+	}
+		
+	//print the degree symbol
+	LcdGliff(0, 78, degree_symbol);
 }
 
 int main(void)
 {
 	//initialize the chip registers
 	init();
-
+	
 	// enable interrupt service routines, we need these for the ADC
 	sei();
 
-	// animate a startup, filling the lcd from the bottom 
+	// animate a startup sequence, filling the display from the bottom to the top of the display with horizontal bars
+	// The reason is to allow the ADC to stabilize the internal values after the boot 
+	for(uint8_t y = 5; y >= 0; y--)
+	{	
+		for(uint8_t x=21; x<63; x++) // top
+		{
+			LcdGotoXY(x, y);
+			LcdWrite(LCD_DATA, 0xff);
+		}
+		_delay_ms(250);
+	}
 	
+	// enable watch dog, careful that timeout is longer than loop sleep time
+	wdt_enable(WDTO_250MS);	
 	
+	uint8_t i = 0xff;
 	while(1)
-	{		
+	{
+		if(i++ == 0)
+		{
+			// using a clear 
+			LcdClear();
+		}
+		
+		LcdDrawGear();
+		LcdDrawTemp();
+		LcdDrawVoltage();
+		
 		// draw the divider grid to separate the display into three components
 		//      | TEMP
 		// GEAR |-----
 		// POS  | BATT
-		LcdDrawVLine(42,0,6);
+		LcdDrawVLine(42,0,5);
 		LcdDrawHLine(42,3,42);
-
-		LcdGotoXY(0, 78);
-		LcdGliff(degree);
-
-		LcdGotoXY(5, 64);
-		LcdGliff(decimal);
-
-		LcdGotoXY(5, 78);
-		LcdGliff(v);
-
-		// Only accept a gear as changed if it maintains a stability for a defined interval of time
-		uint8_t tempGear1 = DetermineGearPos(AverageGearValue());
-		if (tempGear1 != _currentGear)
-		{
-			// make sure that we're serious about this new state,
-			_delay_ms(GEAR_DEBOUNCE_MS);
-			uint8_t tempGear2 = DetermineGearPos(AverageGearValue());
-			if(tempGear2 == tempGear1)
-			{
-				//now make the change
-				_currentGear = tempGear2;
-				SetDisplay(_currentGear);
-			}
-		}
-
-		// the factor is 1.2890625=3.3/256*100  vcc/adcsteps*degreesC
-		// the 0.5volt offset is baked into the MCP9700 to allow the part to read below zero C
-		//convert the ADC reading into a degrees value
-		int8_t degreesC = ((AverageTempValue() * 1.2890625) - 50);
-		
-		if(degreesC < 0)
-		{
-			//print negation symbols
-				
-		}
-		
-		
-		// vdiv = 10k/47k divider network = 5.7x divider on input V
-		// thus 2.5v on ADC is 5.7x2.5=14.25v input
-		// the factor is 3.3/256*vdiv(5.7)=0.0734765625 v per ADC step
-		uint8_t volts = (AverageBattVoltage() * 0.0734765625);
-		
 		
 		//delay to slow looping
 		_delay_ms(DELAY_MS);
+		wdt_reset();
 	}
+	
 	return 0;
 }

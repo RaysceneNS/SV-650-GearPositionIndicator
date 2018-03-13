@@ -37,8 +37,7 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>
-    </avrtool>
+    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
     <com_atmel_avrdbg_tool_simulator>
       <ToolOptions>
         <InterfaceProperties>
@@ -66,7 +65,7 @@
     </com_atmel_avrdbg_tool_ispmk2>
     <preserveEEPROM>true</preserveEEPROM>
     <avrtoolserialnumber />
-    <avrdeviceexpectedsignature>0x1E910B</avrdeviceexpectedsignature>
+    <avrdeviceexpectedsignature>0x1E9207</avrdeviceexpectedsignature>
     <avrtoolinterfaceclock>0</avrtoolinterfaceclock>
     <StimuliFile>Z:\Projects\sv650-gpi\trunk\src\GPI SV650\Neutral Gear.stim</StimuliFile>
     <ResetRule>0</ResetRule>
@@ -151,6 +150,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="bitmap.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="board_attiny44.h">
       <SubType>compile</SubType>
     </Compile>

@@ -11,9 +11,11 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <avr/power.h>
+#include <avr/wdt.h>
 #include "board_attiny44.h"
 #include "transmission.h"
 #include "pcd8544.h"
+#include "bitmap.h"
 
 // defines the number of times to take a sampling of voltages from the ADC, higher numbers increase accuracy at the expense of speed
 // both values must be powers of two
