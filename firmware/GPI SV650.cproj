@@ -67,9 +67,20 @@
     <avrtoolserialnumber />
     <avrdeviceexpectedsignature>0x1E9207</avrdeviceexpectedsignature>
     <avrtoolinterfaceclock>0</avrtoolinterfaceclock>
-    <StimuliFile>Z:\Projects\sv650-gpi\trunk\src\GPI SV650\Neutral Gear.stim</StimuliFile>
+    <StimuliFile>C:\Users\Racine\Documents\GitHub\SV-650-GearPositionIndicator\firmware\Neutral Gear.stim</StimuliFile>
     <ResetRule>0</ResetRule>
     <EraseKey />
+    <custom>
+      <ToolOptions xmlns="">
+        <InterfaceProperties>
+        </InterfaceProperties>
+        <InterfaceName>ISP</InterfaceName>
+      </ToolOptions>
+      <ToolType xmlns="">custom</ToolType>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <ToolName xmlns="">Custom Programming Tool</ToolName>
+    </custom>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>

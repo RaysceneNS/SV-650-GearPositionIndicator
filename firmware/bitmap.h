@@ -1,6 +1,12 @@
 #ifndef BITMAP_H_
 #define BITMAP_H_
 
+/*
+All bitmaps are RLE encoded 48x42
+
+due to encoding scheme no solid area can be more than 255 bytes in length
+*/
+
 static const unsigned char BMP_CLEAR[] PROGMEM = {
 	'\x00','\x00','\xf0',
 };
@@ -14,6 +20,7 @@ static const unsigned char BMP_FIRST[] PROGMEM = {
 	'\x08','\x00','\x00','\x20','\x0f','\x1f','\x3f','\x7f', // 0x0030
 	'\xff','\xff','\x04','\x00','\x00','\x03'
 };
+
 static const unsigned char BMP_SECOND[] PROGMEM = {
 	'\x00','\x00','\x05','\x0f','\x1f','\x3f','\x7f','\xff', // 0x0008
 	'\xff','\x18','\xfe','\xfc','\xf8','\xf0','\x00','\x00', // 0x0010
@@ -25,6 +32,7 @@ static const unsigned char BMP_SECOND[] PROGMEM = {
 	'\x7f','\xff','\xff','\x18','\xfe','\xfc','\xf8','\xf0', // 0x0040
 	'\x00','\x00','\x03'
 };
+
 static const unsigned char BMP_THIRD[] PROGMEM = {
 	'\x00','\x00','\x05','\x0f','\x1f','\x3f','\x7f','\xff', // 0x0008
 	'\xff','\x18','\xfe','\xfc','\xf8','\xf0','\x00','\x00', // 0x0010
@@ -36,6 +44,7 @@ static const unsigned char BMP_THIRD[] PROGMEM = {
 	'\xfe','\xff','\xff','\x18','\x7f','\x3f','\x1f','\x0f', // 0x0040
 	'\x00','\x00','\x03'
 };
+
 static const unsigned char BMP_FOURTH[] PROGMEM = {
 	'\x00','\x00','\x05','\xff','\xff','\x04','\xfe','\xfc', // 0x0008
 	'\xf8','\xf0','\x00','\x00','\x10','\xf0','\xf8','\xfc', // 0x0010
@@ -48,6 +57,7 @@ static const unsigned char BMP_FOURTH[] PROGMEM = {
 	'\x00','\x20','\x0f','\x1f','\x3f','\x7f','\xff','\xff', // 0x0048
 	'\x04','\x00','\x00','\x03',
 };
+
 static const unsigned char BMP_FIFTH[] PROGMEM = {
 	'\x00','\x00','\x05','\xf0','\xf8','\xfc','\xfe','\xff', // 0x0008
 	'\xff','\x18','\x7f','\x3f','\x1f','\x0f','\x00','\x00', // 0x0010
@@ -59,6 +69,7 @@ static const unsigned char BMP_FIFTH[] PROGMEM = {
 	'\xfe','\xff','\xff','\x18','\x7f','\x3f','\x1f','\x0f', // 0x0040
 	'\x00','\x00','\x03',
 };
+
 static const unsigned char BMP_SIXTH[] PROGMEM = {
 	'\x00','\x00','\x05','\xf0','\xf8','\xfc','\xfe','\xff', // 0x0008
 	'\xff','\x18','\x7f','\x3f','\x1f','\x0f','\x00','\x00', // 0x0010
@@ -71,6 +82,7 @@ static const unsigned char BMP_SIXTH[] PROGMEM = {
 	'\xff','\x18','\x7f','\x3f','\x1f','\x0f','\x00','\x00', // 0x0048
 	'\x03',
 };
+
 static const unsigned char BMP_NEUTRAL[] PROGMEM = {
 	'\x00','\x00','\x05','\xe0','\xe0','\x04','\xc0','\x80', // 0x0008
 	'\x00','\x00','\x12','\xe0','\xe0','\x08','\x00','\x00', // 0x0010

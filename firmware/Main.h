@@ -4,7 +4,7 @@
 /* 
 8MHz crystal oscillator / div8 
 */
-#define F_CPU 1000000UL         
+#define F_CPU 1000000UL
 
 #include <stdint.h>       // needed for uint8_t
 #include <avr/io.h>

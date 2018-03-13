@@ -102,7 +102,6 @@ ISR(ADC_vect)
 				_gearPosCnt++;
 			}
 		}
-		
 	}
 	else if(ADMUX == BATT_ADC_CH)
 	{
@@ -291,7 +290,7 @@ int main(void)
 	// The reason is to allow the ADC to stabilize the internal values after the boot 
 	for(uint8_t y = 5; y >= 0; y--)
 	{	
-		for(uint8_t x=21; x<63; x++) // top
+		for(uint8_t x=21; x < 63; x++) // top
 		{
 			LcdGotoXY(x, y);
 			LcdWrite(LCD_DATA, 0xff);
@@ -307,7 +306,7 @@ int main(void)
 	{
 		if(i++ == 0)
 		{
-			// using a clear 
+			// every 255 loops interject a full screen clear approx every 6.5 secs
 			LcdClear();
 		}
 		
@@ -322,7 +321,7 @@ int main(void)
 		LcdDrawVLine(42,0,5);
 		LcdDrawHLine(42,3,42);
 		
-		//delay to slow looping
+		//delay to slow looping approx 40fps
 		_delay_ms(DELAY_MS);
 		wdt_reset();
 	}
