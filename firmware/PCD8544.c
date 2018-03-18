@@ -78,10 +78,9 @@ void LcdGotoXY(uint8_t x, uint8_t y)
 /*
 Draw a vertical line on the display starts at position x,y and moves down for height pixels
 */
-void LcdDrawVLine(uint8_t x, uint8_t y, uint8_t height)
+void LcdDrawVLine(uint8_t x, uint8_t y, uint8_t rows)
 {
-	unsigned char j;
-	for(j=y; j<(y+height); j++) // Right
+	for(uint8_t j=y; j<(y+rows); j++) // Right
 	{
 		LcdGotoXY (x, j);
 		LcdWrite (LCD_DATA, 0xff);
@@ -93,10 +92,9 @@ Draw a horizontal line on the display at position x,y with width parameter
 */
 void LcdDrawHLine(uint8_t x, uint8_t y, uint8_t width)
 {
-	unsigned char j;
-	for(j=x; j<(x+width); j++) // top
+	LcdGotoXY (x, y);
+	for(uint8_t j=x; j<(x+width); j++) // top
 	{
-		LcdGotoXY (j, y);
 		LcdWrite (LCD_DATA, 0x01);
 	}
 }
@@ -130,6 +128,17 @@ void LcdGliff(uint8_t x, uint8_t y, const uint8_t *BMP)
 	}
 }
 
+void LcdClearBlock(uint8_t x, uint8_t y, uint8_t cols, uint8_t rows)
+{
+	for(uint8_t i=0; i<rows;i++)
+	{
+		LcdGotoXY(x,y+i);
+		for (int j= 0; j< cols; j++)
+		{
+			LcdWrite(LCD_DATA, 0x00);
+		}
+	}
+}
 /*
 Display the bitmap at location x,y
 
@@ -137,15 +146,14 @@ Bitmaps are RLE encoded
 */
 void LcdBitmap(uint8_t x, uint8_t y, const uint8_t *BMP)
 {
-	uint8_t col=0, row=0;
 	uint8_t data=0,count=0;
 	uint16_t i=0;
 	
-	for (row=0; row < 6; row++)
+	for (uint8_t row=0; row < 6; row++)
 	{	
 		LcdGotoXY(x, y+row);
 		
-		for (col=0; col < 40; col++)
+		for (uint8_t col=0; col < 40; col++)
 		{
 			if(count==0)
 			{

@@ -84,28 +84,32 @@ static const unsigned char BMP_SIXTH[] PROGMEM = {
 };
 
 static const unsigned char BMP_NEUTRAL[] PROGMEM = {
-	'\x00','\x00','\x05','\xe0','\xe0','\x04','\xc0','\x80', // 0x0008
-	'\x00','\x00','\x12','\xe0','\xe0','\x08','\x00','\x00', // 0x0010
-	'\x08','\xff','\xff','\x07','\xfe','\xfc','\xf8','\xf0', // 0x0018
-	'\xe0','\xc0','\x80','\x00','\x00','\x0a','\xff','\xff', // 0x0020
-	'\x08','\x00','\x00','\x08','\xff','\xff','\x08','\x7f', // 0x0028
-	'\xff','\xff','\x06','\xfe','\xfc','\xf8','\xf0','\xe0', // 0x0030
-	'\xc0','\x80','\x00','\x00','\x02','\xff','\xff','\x08', // 0x0038
-	'\x00','\x00','\x08','\xff','\xff','\x08','\x00','\x00', // 0x0040
-	'\x02','\x01','\x03','\x07','\x0f','\x1f','\x3f','\x7f', // 0x0048
-	'\xff','\xff','\x06','\xfe','\xff','\xff','\x08','\x00', // 0x0050
-	'\x00','\x08','\xff','\xff','\x08','\x00','\x00','\x0a', // 0x0058
-	'\x01','\x03','\x07','\x0f','\x1f','\x3f','\x7f','\xff', // 0x0060
-	'\xff','\x07','\x00','\x00','\x08','\x07','\x07','\x08', // 0x0068
-	'\x00','\x00','\x12','\x01','\x03','\x07','\x07','\x04', // 0x0070
-	'\x00','\x00','\x03',
+	'\x00','\x00','\x02','\xf8','\xf8','\x04','\xf0','\xe0', // 0x0008
+	'\xc0','\x80','\x00','\x00','\x14','\xf8','\xf8','\x08', // 0x0010
+	'\x00','\x00','\x04','\xff','\xff','\x09','\xfe','\xfc', // 0x0018
+	'\xf8','\xf0','\xe0','\xc0','\x80','\x00','\x00','\x0c', // 0x0020
+	'\xff','\xff','\x08','\x00','\x00','\x04','\xff','\xff', // 0x0028
+	'\x08','\x1f','\x3f','\x7f','\xff','\xff','\x06','\xfe', // 0x0030
+	'\xfc','\xf8','\xf0','\xe0','\xc0','\x80','\x00','\x00', // 0x0038
+	'\x04','\xff','\xff','\x08','\x00','\x00','\x04','\xff', // 0x0040
+	'\xff','\x08','\x00','\x00','\x04','\x01','\x03','\x07', // 0x0048
+	'\x0f','\x1f','\x3f','\x7f','\xff','\xff','\x06','\xfe', // 0x0050
+	'\xfc','\xf8','\xff','\xff','\x08','\x00','\x00','\x04', // 0x0058
+	'\xff','\xff','\x08','\x00','\x00','\x0c','\x01','\x03', // 0x0060
+	'\x07','\x0f','\x1f','\x3f','\x7f','\xff','\xff','\x09', // 0x0068
+	'\x00','\x00','\x04','\x1f','\x1f','\x08','\x00','\x00', // 0x0070
+	'\x14','\x01','\x03','\x07','\x0f','\x1f','\x1f','\x04', // 0x0078
+	'\x00','\x00','\x02',
 };
 
 // gliffs are 8x5
 static const uint8_t degree_symbol[] PROGMEM = {0x38, 0x44, 0x44, 0x44, 0x38};  // o
 static const uint8_t volt_symbol[] PROGMEM =   {0x1c, 0x20, 0x40, 0x20, 0x1c};  // v
-static const uint8_t decimal[] PROGMEM =       {0x00, 0x00, 0x60, 0x60, 0x00};  // .
-static const uint8_t hyphen[] PROGMEM =        {0x06, 0x06, 0x06, 0x06, 0x00};  // -
+static const uint8_t decimal[] PROGMEM =       {0x00, 0x00, 0x70, 0x70, 0x70};  // .
+static const uint8_t hyphen[] PROGMEM =        {0x00, 0x06, 0x06, 0x06, 0x06};  // -
+static const uint8_t space[] PROGMEM =         {0x00, 0x00, 0x00, 0x00, 0x00};  // 
+static const uint8_t oneup[] PROGMEM =         {0x00, 0x00, 0x78, 0xfc, 0x00};  // 1
+static const uint8_t onedown[] PROGMEM =       {0x00, 0x00, 0x3c, 0x7e, 0x00};  // 1
 
 
 // medium numbers are 16 high x 12 wide and have padding left and right

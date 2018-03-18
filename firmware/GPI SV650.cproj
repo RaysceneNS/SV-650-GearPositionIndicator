@@ -24,7 +24,7 @@
     <UncachedRange />
     <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
-    <eraseonlaunchrule>1</eraseonlaunchrule>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
     <AsfFrameworkConfig>
       <framework-data>
         <options />
@@ -37,7 +37,7 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
+    <avrtool>com.atmel.avrdbg.tool.ispmk2</avrtool>
     <com_atmel_avrdbg_tool_simulator>
       <ToolOptions>
         <InterfaceProperties>
@@ -55,18 +55,18 @@
       <ToolOptions>
         <InterfaceProperties>
           <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
-          <IspClock>0</IspClock>
+          <IspClock>125000</IspClock>
         </InterfaceProperties>
         <InterfaceName>ISP</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.ispmk2</ToolType>
-      <ToolNumber>000200012345</ToolNumber>
+      <ToolNumber>000200212345</ToolNumber>
       <ToolName>AVRISP mkII</ToolName>
     </com_atmel_avrdbg_tool_ispmk2>
-    <preserveEEPROM>true</preserveEEPROM>
-    <avrtoolserialnumber />
+    <preserveEEPROM>false</preserveEEPROM>
+    <avrtoolserialnumber>000200212345</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x1E9207</avrdeviceexpectedsignature>
-    <avrtoolinterfaceclock>0</avrtoolinterfaceclock>
+    <avrtoolinterfaceclock>125000</avrtoolinterfaceclock>
     <StimuliFile>C:\Users\Racine\Documents\GitHub\SV-650-GearPositionIndicator\firmware\Neutral Gear.stim</StimuliFile>
     <ResetRule>0</ResetRule>
     <EraseKey />
@@ -185,11 +185,6 @@
     <Compile Include="transmission.h">
       <SubType>compile</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Neutral Gear.stim">
-      <SubType>compile</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

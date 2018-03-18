@@ -48,5 +48,6 @@ void LcdInitialise(void);
 void LcdClear(void);
 void LcdGliff(uint8_t x, uint8_t y, const uint8_t *BMP);
 void LcdMediumDigit(uint8_t x, uint8_t y, uint8_t c);
+void LcdClearBlock(uint8_t x, uint8_t y, uint8_t cols, uint8_t rows);
 
 #endif /* PCD8544_H_ */

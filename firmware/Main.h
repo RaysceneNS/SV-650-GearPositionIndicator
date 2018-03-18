@@ -21,7 +21,7 @@
 // both values must be powers of two
 #define SAMPLE_SETS 8 //avg this many samples together
 
-#define DELAY_MS 25 // this delay is used to set a max frame rate of the LCD panel 1000/DELAY_MS = FRAMES
+#define DELAY_MS 40 // this delay is used to set a max frame rate of the LCD panel 1000/DELAY_MS = FRAMES
 
 #define SETBIT(ADDRESS,BIT) (ADDRESS |= (1<<BIT))
 #define CLEARBIT(ADDRESS,BIT) (ADDRESS &= ~(1<<BIT))
