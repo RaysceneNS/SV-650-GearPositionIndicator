@@ -17,7 +17,7 @@ To build the firmware solution you will need Atmel Studio v. 7
 
 To deploy the firmware you will need an in system programmer (ISP) attached to the microcontrollers using the following programming pins.
 
-![alt text](https://github.com/RaysceneNS/SV-650-GearPositionIndicator/tree/master/img/attinyx4.png "ATTiny Pinouts")
+![alt text](https://raw.githubusercontent.com/RaysceneNS/SV-650-GearPositionIndicator/master/img/attinyx4.png)
 
 * MOSI
 * MISO
@@ -57,8 +57,8 @@ This is the list of components required to build the gear position indicator.
 
 This is what the finished product looks like on the motorcycle.
 
-![alt text](https://github.com/RaysceneNS/SV-650-GearPositionIndicator/tree/master/img/screen%20first%20gear.png "First Gear")
+![alt text](https://github.com/RaysceneNS/SV-650-GearPositionIndicator/blob/master/img/screen%20first%20gear.jpg)
 
-![alt text](https://github.com/RaysceneNS/SV-650-GearPositionIndicator/tree/master/img/screen%20neutral.png "Neutral")
+![alt text](https://github.com/RaysceneNS/SV-650-GearPositionIndicator/blob/master/img/screen%20neutral.jpg)
 
-![alt text](https://github.com/RaysceneNS/SV-650-GearPositionIndicator/tree/master/img/screen%20second%20gear.png "Second Gear")
+![alt text](https://github.com/RaysceneNS/SV-650-GearPositionIndicator/blob/master/img/screen%20second%20gear.jpg)
