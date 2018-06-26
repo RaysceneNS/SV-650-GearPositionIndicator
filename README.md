@@ -17,7 +17,7 @@ To build the firmware solution you will need Atmel Studio v. 7
 
 To deploy the firmware you will need an in system programmer (ISP) attached to the microcontrollers using the following programming pins.
 
-![alt text](https://raw.githubusercontent.com/RaysceneNS/SV-650-GearPositionIndicator/master/img/attinyx4.png)
+![alt text](https://raw.githubusercontent.com/RaysceneNS/SV-650-GearPositionIndicator/master/img/ATtinyx4.png "ATTiny pinout")
 
 * MOSI
 * MISO
